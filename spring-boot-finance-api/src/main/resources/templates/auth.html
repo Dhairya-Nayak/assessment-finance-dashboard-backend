@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title th:text="${title} + ' | Folio Ledger'">Sign in | Folio Ledger</title>
+    <link rel="stylesheet" href="/css/app.css" th:href="@{/css/app.css}">
+</head>
+<body class="auth-shell" data-page="login" th:attr="data-page=${page}">
+<main class="auth-grid">
+    <section class="auth-editorial" aria-label="Product identity">
+        <a class="brand-wordmark" href="/dashboard" th:href="@{/dashboard}">
+            <span class="brand-mark">F</span>
+            <span>Folio Ledger</span>
+        </a>
+        <div class="auth-copy">
+            <p class="eyebrow">Private finance workspace</p>
+            <h1>Clear money work, without the noise.</h1>
+            <p>Records, categories, analytics, users, and audit history are arranged as one quiet operating room for the finance team.</p>
+        </div>
+        <div class="auth-footnote">
+            <span>JWT secured</span>
+            <span>Role aware</span>
+            <span>Audit ready</span>
+        </div>
+    </section>
+
+    <section class="auth-panel">
+        <div class="auth-panel-head">
+            <p class="eyebrow" id="auth-kicker">Welcome back</p>
+            <h2 id="auth-title">Sign in</h2>
+        </div>
+
+        <form id="login-form" class="stack auth-form" data-auth-panel="login" th:classappend="${page == 'login'} ? ' is-active' : ''">
+            <label>
+                <span>Username or email</span>
+                <input id="login-identity" name="usernameOrEmail" type="text" autocomplete="username" required>
+            </label>
+            <label>
+                <span>Password</span>
+                <input id="login-password" name="password" type="password" autocomplete="current-password" required>
+            </label>
+            <button class="button primary" type="submit">Sign in</button>
+            <div class="auth-links">
+                <span>Use sample role</span>
+                <button type="button" class="text-button" data-credential="admin">Admin</button>
+                <button type="button" class="text-button" data-credential="analyst">Analyst</button>
+                <button type="button" class="text-button" data-credential="viewer">Viewer</button>
+            </div>
+            <p class="form-note">New here? <a href="/register" th:href="@{/register}">Create an account</a></p>
+        </form>
+
+        <form id="register-form" class="stack auth-form" data-auth-panel="register" th:classappend="${page == 'register'} ? ' is-active' : ''">
+            <div class="field-grid">
+                <label>
+                    <span>First name</span>
+                    <input name="firstName" type="text" autocomplete="given-name">
+                </label>
+                <label>
+                    <span>Last name</span>
+                    <input name="lastName" type="text" autocomplete="family-name">
+                </label>
+            </div>
+            <label>
+                <span>Username</span>
+                <input name="username" type="text" autocomplete="username" required minlength="3">
+            </label>
+            <label>
+                <span>Email</span>
+                <input name="email" type="email" autocomplete="email" required>
+            </label>
+            <label>
+                <span>Password</span>
+                <input name="password" type="password" autocomplete="new-password" required minlength="8">
+            </label>
+            <button class="button primary" type="submit">Create account</button>
+            <p class="form-note">Already have access? <a href="/login" th:href="@{/login}">Sign in</a></p>
+        </form>
+
+        <p id="auth-message" class="notice" role="status" aria-live="polite"></p>
+    </section>
+</main>
+<script src="/js/auth.js" th:src="@{/js/auth.js}" defer></script>
+</body>
+</html>

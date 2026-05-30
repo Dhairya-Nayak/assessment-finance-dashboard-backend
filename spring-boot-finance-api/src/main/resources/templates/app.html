@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title th:text="${title} + ' | Folio Ledger'">Dashboard | Folio Ledger</title>
+    <link rel="stylesheet" href="/css/app.css" th:href="@{/css/app.css}">
+</head>
+<body class="app-body" data-page="dashboard" th:attr="data-page=${page}">
+<div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+        <a class="brand-wordmark" href="/dashboard" th:href="@{/dashboard}" aria-label="Folio Ledger dashboard">
+            <span class="brand-mark">F</span>
+            <span>Folio Ledger</span>
+        </a>
+
+        <nav class="side-nav" aria-label="Primary">
+            <a href="/dashboard" th:href="@{/dashboard}" data-nav="dashboard" th:classappend="${page == 'dashboard'} ? ' is-active' : ''">Dashboard</a>
+            <a href="/records" th:href="@{/records}" data-nav="records" th:classappend="${page == 'records'} ? ' is-active' : ''">Records</a>
+            <a href="/analytics" th:href="@{/analytics}" data-nav="analytics" data-role="ANALYST ADMIN" th:classappend="${page == 'analytics'} ? ' is-active' : ''">Analytics</a>
+            <a href="/categories" th:href="@{/categories}" data-nav="categories" th:classappend="${page == 'categories'} ? ' is-active' : ''">Categories</a>
+            <a href="/users" th:href="@{/users}" data-nav="users" data-role="ADMIN" th:classappend="${page == 'users'} ? ' is-active' : ''">Users</a>
+            <a href="/audit" th:href="@{/audit}" data-nav="audit" data-role="ADMIN" th:classappend="${page == 'audit'} ? ' is-active' : ''">Audit</a>
+            <a href="/profile" th:href="@{/profile}" data-nav="profile" th:classappend="${page == 'profile'} ? ' is-active' : ''">Profile</a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <p class="eyebrow">Signed in as</p>
+            <p id="sidebar-user" class="sidebar-user">Loading</p>
+            <button id="sidebar-logout" class="text-button" type="button">Sign out</button>
+        </div>
+    </aside>
+
+    <div class="workspace">
+        <header class="topbar">
+            <button class="menu-button" type="button" aria-controls="sidebar" aria-expanded="false">Menu</button>
+            <div>
+                <p class="eyebrow" id="page-kicker">Workspace</p>
+                <h1 th:text="${title}">Dashboard</h1>
+            </div>
+            <div class="topbar-meta">
+                <span id="role-chip" class="chip">Role</span>
+                <span id="today-chip" class="chip">Today</span>
+            </div>
+        </header>
+
+        <main id="page-root" class="page-root" tabindex="-1">
+            <section class="loading-state">
+                <p class="eyebrow">Loading</p>
+                <h2>Preparing the ledger</h2>
+            </section>
+        </main>
+    </div>
+</div>
+
+<dialog id="entity-dialog" class="entity-dialog">
+    <div class="dialog-frame">
+        <div class="dialog-head">
+            <div>
+                <p class="eyebrow" id="dialog-kicker">Edit</p>
+                <h2 id="dialog-title">Dialog</h2>
+            </div>
+            <button id="dialog-close" class="text-button" type="button">Close</button>
+        </div>
+        <div id="dialog-body" class="dialog-body"></div>
+    </div>
+</dialog>
+
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+<script src="/js/app.js" th:src="@{/js/app.js}" defer></script>
+</body>
+</html>

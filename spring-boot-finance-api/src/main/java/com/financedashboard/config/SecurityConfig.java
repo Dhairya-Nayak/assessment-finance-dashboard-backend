@@ -62,6 +62,24 @@ public class SecurityConfig {
                 .exceptionHandling(exception -> exception.authenticationEntryPoint(unauthorizedHandler))
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
+                        // Public Thymeleaf frontend shell and static assets. API access remains JWT-protected below.
+                        .requestMatchers(
+                                "/",
+                                "/login",
+                                "/register",
+                                "/dashboard",
+                                "/analytics",
+                                "/records",
+                                "/categories",
+                                "/users",
+                                "/audit",
+                                "/profile",
+                                "/favicon.ico",
+                                "/css/**",
+                                "/js/**",
+                                "/images/**"
+                        ).permitAll()
+
                         // Public auth endpoints only
                         .requestMatchers(
                                 "/api/auth/login",
